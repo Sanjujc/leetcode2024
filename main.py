@@ -10,6 +10,9 @@ def parse_request(valid_auth_tokens, requests):
         url_params = url.split('?')[1].split('&')
         for param in url_params:
             key, value = param.split('=')
+            # Remove leading/trailing spaces from key and value
+            key = key.strip()
+            value = value.strip()
             params[key] = value
 
         # Check authentication token
@@ -33,13 +36,13 @@ def parse_request(valid_auth_tokens, requests):
     return result
 
 
-# Example usage
-valid_auth_tokens = ["ah37j2ha483u", "safh34ywb0p5", "ba34wyi8t902"]
+# New valid authentication tokens
+valid_auth_tokens = ["et51u8i9p1q7", "r5b019lmlp09"]
+
+# Example requests
 requests = [
-    ["GET", "https://example.com/?token=347sd6yk8iu2&name=alex"],
-    ["GET", "https://example.com/?token=safh34ywb0p5&name=sam"],
-    ["POST", "https://example.com/?token=safh34ywb0p5&name=alex"],
-    ["POST", "https://example.com/?token=safh34ywb0p5&csrf=ak2sh32dy&name=chris"]
+    ["GET", "https://example.com/?token=et51u8i9p1q7&id=2e3rt&name=alex"],
+    ["POST", "https://example.com/?token=r5b019lmlp09&csrf=a&name=chris"]
 ]
 
 result = parse_request(valid_auth_tokens, requests)
